@@ -4,12 +4,11 @@ var Microgreen = require('../models/microgreensModel')
 module.exports = function (app) {
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({ extended: true }))
-    app.get('/api/test', function (req, res) {
-        console.log("Server API Test!!!")
-        // res.send("Test Response")
-        Microgreen.find({}, function (err, crop) {
-            if (err) throw err;
-            res.send(crop)
+    
+    app.get('/api/microgreens', (req, res)=>{
+        Microgreen.find({}, (err, microgreen)=>{
+            if(err)throw err
+            res.send(microgreen)
         })
     })
 

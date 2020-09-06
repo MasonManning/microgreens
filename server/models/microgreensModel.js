@@ -7,5 +7,5 @@ var microgreenSchema = new Schema({
     stage: String,
     notes: String
 })
-var microgreen = mongoos.model('MicroGreen', microgreenSchema)
+var microgreen = mongoose.model('MicroGreen', microgreenSchema)
 module.exports = microgreen
