@@ -24,7 +24,7 @@ const Dashboard = () => {
     const handleAdd = () => {
         setShow(ps => true)
         console.log("Add ")
-        setMicrogreens(ps => [...ps, {seed: "Ahahaha"}])
+        setMicrogreens(ps => [...ps, { seed: "Ahahaha" }])
         console.log(microgreens)
     }
     return (
@@ -32,13 +32,8 @@ const Dashboard = () => {
             {/* <h1>Welcome To Dashboard</h1> */}
             {/* {isLoaded && microgreens.map(x=> <MicrogreenItem key={x._id} microgreen={x} />)} */}
             <Button onClick={handleAdd}>Add Microgreen</Button>
-            <AddMicroModal show={show} handleClose={()=>{setShow(false)}}/>
-            {isLoaded && microgreens.map((x,i)=> {
-                // Apparently assigning a key using the index as seen below is bad.
-                // However when I use x._id, react complains saying i'm not assigning a key...
-            return(<MicrogreenItem key={i} microgreen={x} />)
-            })}
-            {/* {isLoaded ? microgreens.map(x=> <MicrogreenItem key={x._id} microgreen={x} />) : ""} */}
+            <AddMicroModal show={show} handleClose={() => { setShow(false) }} />
+            {isLoaded && <MicrogreenItem microgreens={microgreens} />}
         </div>
     )
 }
