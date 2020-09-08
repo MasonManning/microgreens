@@ -11,9 +11,12 @@ const Dashboard = () => {
 
     useEffect(
         () => {
-            fetch('http://localhost:5001/api/microgreens'
+            fetch('/api/microgreens'
             )
-                .then(res => res.json())
+                .then(res => {
+                    console.log(res)
+                   return( res.json())
+                })
                 .then(data => {
                     setIsLoaded(true)
                     setMicrogreens(data)

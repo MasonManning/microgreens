@@ -40,7 +40,8 @@ module.exports = function (app) {
         }
     })
 
-    app.delete('api/microgreens', (req, res) => {
+    app.delete('/api/microgreens', (req, res) => {
+        console.log("******************************Api Delete")
         Microgreen.findByIdAndDelete(req.body.id, (err)=>{
             if(err) throw err;
             res.send('success')
