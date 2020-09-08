@@ -21,7 +21,7 @@ function MicrogreenItem(props) {
                 id: id
             })
         })
-            // .then(data => data.status === 200 ? props.deleteMicro(props._id) : '')
+            .then(data => data.status === 200 ? props.deleteMicro(id) : '')
     }
     // const handleDelete = () => {
     //     fetch('http://localhost:5001/api/microgreens', {
