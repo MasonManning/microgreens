@@ -41,14 +41,26 @@ function AddMicroModal(props) {
         <div>
             {/* <Modal show={props.show} onHide={props.handleClose} dialogClassName="modal-dialog modal-xl" > */}
             <Modal show={props.show} onHide={props.handleClose} >
-                <Modal.Header closeButton></Modal.Header>
+                <Modal.Header closeButton>
+                    Add New Microgreen
+                </Modal.Header>
                 <Modal.Body>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Control placeholder='Seed' onChange={(e) => { setSeed(e.target.value) }} />
-                        <Form.Control placeholder='Seed Qty' onChange={(e) => { setSeedQty(e.target.value) }} />
-                        <Form.Control placeholder='Soil Type' onChange={(e) => { setSoilType(e.target.value) }} />
-                        <Form.Control placeholder='Stage' onChange={(e) => { setStage(e.target.value) }} />
-                        <Form.Control placeholder='Notes' onChange={(e) => { setNotes(e.target.value) }} />
+                    <Form>
+                        <Form.Group>
+                            <Form.Control placeholder='Seed' onChange={(e) => { setSeed(e.target.value) }} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Control placeholder='Seed Qty' onChange={(e) => { setSeedQty(e.target.value) }} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Control placeholder='Soil Type' onChange={(e) => { setSoilType(e.target.value) }} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Control placeholder='Stage' onChange={(e) => { setStage(e.target.value) }} />
+                        </Form.Group>
+                        <Form.Group onSubmit={handleSubmit}>
+                            <Form.Control placeholder='Notes' onChange={(e) => { setNotes(e.target.value) }} />
+                        </Form.Group >
                     </Form>
                     <Table striped bordered hover>
                     </Table>
