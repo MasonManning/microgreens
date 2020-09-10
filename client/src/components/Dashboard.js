@@ -26,9 +26,6 @@ const Dashboard = () => {
     )
     const handleAdd = () => {
         setShow(ps => true)
-        console.log("Add ")
-        setMicrogreens(ps => [...ps, { seed: "Ahahaha" }])
-        console.log(microgreens)
     }
     const deleteMicro = (id) => {
         console.log(microgreens)
@@ -36,12 +33,15 @@ const Dashboard = () => {
         setMicrogreens(ps => ps.filter(x => x._id != id))
         console.log(f)
     }
+    const addMicro = (item) =>{
+        setMicrogreens(ps => [...ps, item])
+    }
     return (
         <div>
             {/* <h1>Welcome To Dashboard</h1> */}
             {/* {isLoaded && microgreens.map(x=> <MicrogreenItem key={x._id} microgreen={x} />)} */}
             <Button onClick={handleAdd}>Add Microgreen</Button>
-            <AddMicroModal show={show} handleClose={() => { setShow(false) }} />
+            <AddMicroModal show={show} handleClose={() => { setShow(false) }} addMicro={addMicro}/>
             {isLoaded && <MicrogreenItem microgreens={microgreens} deleteMicro={deleteMicro}/>}
         </div>
     )

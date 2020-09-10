@@ -18,24 +18,22 @@ function AddMicroModal(props) {
     console.log(props.show)
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log("Submit")
-        console.log(event.target)
-        console.log(seed)
-
-        fetch('/api/microgreens', {
-            method: 'POST',
-            headers: {
-                'Accept': 'Application/json',
-                'Content-Type': 'Application/json'
-            },
-            body: JSON.stringify({
+        const newMicro = {
                 seed: seed,
                 seedQty: seedQty,
                 soilType: soilType,
                 stage: stage,
                 notes: notes
-            })
-        })
+            }
+        fetch('/api/microgreens', {
+            method: 'POST', headers: {
+                'Accept': 'Application/json',
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(newMicro)
+        }).then(res => res.status === 200 ? props.addMicro(newMicro) : '')
+        props.handleClose()
+
     }
     return (
         <div>
@@ -66,7 +64,7 @@ function AddMicroModal(props) {
                     </Table>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button type='submit'>Submit</Button>
+                    <Button onClick={handleSubmit}>Submit</Button>
                     <Button onClick={props.handleClose}>Close</Button>
                 </Modal.Footer>
             </Modal>
