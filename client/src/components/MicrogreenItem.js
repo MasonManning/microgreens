@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{useState} from 'react';
 import PropTypes from 'prop-types';
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
+import MicroModal from './MicroModal'
 import './MicrogreenItem.css'
 
 MicrogreenItem.propTypes = {
@@ -9,6 +10,8 @@ MicrogreenItem.propTypes = {
 };
 
 function MicrogreenItem(props) {
+    const [show, setShow] = useState(false)
+    const [editItem, setEditItem] = useState({})
 
         const handleDelete = (id) => {
             console.log(id)
@@ -24,11 +27,21 @@ function MicrogreenItem(props) {
         })
             .then(data => data.status === 200 ? props.deleteMicro(id) : '')
     }
+    const handleEdit = (item) => {
+        setEditItem(item)
+        setShow(true)
+    }
+    const editMicro = (item) => {
+        item.id = editItem._id
+        props.editMicro(item)
+    }
 
     return (
         <div>
 
-            <Table striped bordered hover>
+            {/* <AddMicroModal show={show} handleClose={() => { setShow(false) }} addMicro={addMicro}/> */}
+            <MicroModal show={show} handleClose={() => { setShow(false) }} directive={editMicro}/>
+            <Table striped bordered hover>                                  
                 <thead>
                     <tr>
                         <th>
@@ -73,7 +86,7 @@ function MicrogreenItem(props) {
                                 <td>
                                     <Button className='btnStyle' variant='danger' onClick={() => {handleDelete(x._id)}}>Delete</Button>
                                     <br/>
-                                    <Button className='btnStyle'>Edit</Button>
+                                    <Button onClick={() => {handleEdit(x)}} className='btnStyle'>Edit</Button>
                                 </td>
                             </tr>
                         )

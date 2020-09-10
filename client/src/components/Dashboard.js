@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import MicrogreenItem from './MicrogreenItem'
 import Button from 'react-bootstrap/Button'
-import AddMicroModal from './AddMicroModal'
+import MicroModal from './MicroModal'
 
 
 const Dashboard = () => {
@@ -29,20 +29,28 @@ const Dashboard = () => {
     }
     const deleteMicro = (id) => {
         console.log(microgreens)
-        const f = microgreens.filter(x => x._id != id)
         setMicrogreens(ps => ps.filter(x => x._id != id))
-        console.log(f)
     }
     const addMicro = (item) =>{
-        setMicrogreens(ps => [...ps, item])
+
+        fetch('/api/microgreens', {
+            method: 'POST', headers: {
+                'Accept': 'Application/json',
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(item)
+        }).then(res => res.status === 200 ? setMicrogreens(ps => [...ps, item]) : '')
+    }
+    const editMicro = (item) => {
+        setMicrogreens(ps => ps.map(x => x._id === item.id ? item : x))
     }
     return (
         <div>
             {/* <h1>Welcome To Dashboard</h1> */}
             {/* {isLoaded && microgreens.map(x=> <MicrogreenItem key={x._id} microgreen={x} />)} */}
             <Button onClick={handleAdd}>Add Microgreen</Button>
-            <AddMicroModal show={show} handleClose={() => { setShow(false) }} addMicro={addMicro}/>
-            {isLoaded && <MicrogreenItem microgreens={microgreens} deleteMicro={deleteMicro}/>}
+            <MicroModal show={show} handleClose={() => { setShow(false) }} directive={addMicro}/>
+            {isLoaded && <MicrogreenItem microgreens={microgreens} deleteMicro={deleteMicro} editMicro={editMicro}/>}
         </div>
     )
 }

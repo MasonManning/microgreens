@@ -5,17 +5,16 @@ import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import Form from 'react-bootstrap/Form'
 import './AddMicroModal.css'
-AddMicroModal.propTypes = {
+MicroModal.propTypes = {
 
 };
 
-function AddMicroModal(props) {
+function MicroModal(props) {
     const [seed, setSeed] = useState('')
     const [seedQty, setSeedQty] = useState('')
     const [soilType, setSoilType] = useState('')
     const [stage, setStage] = useState('')
     const [notes, setNotes] = useState('')
-    console.log(props.show)
     const handleSubmit = (event) => {
         event.preventDefault()
         const newMicro = {
@@ -25,13 +24,7 @@ function AddMicroModal(props) {
                 stage: stage,
                 notes: notes
             }
-        fetch('/api/microgreens', {
-            method: 'POST', headers: {
-                'Accept': 'Application/json',
-                'Content-Type': 'Application/json'
-            },
-            body: JSON.stringify(newMicro)
-        }).then(res => res.status === 200 ? props.addMicro(newMicro) : '')
+        props.directive(newMicro)
         props.handleClose()
 
     }
@@ -71,4 +64,4 @@ function AddMicroModal(props) {
     );
 }
 
-export default AddMicroModal;
+export default MicroModal;
