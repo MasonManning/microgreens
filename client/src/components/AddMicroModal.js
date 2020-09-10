@@ -37,7 +37,6 @@ function AddMicroModal(props) {
     }
     return (
         <div>
-            {/* <Modal show={props.show} onHide={props.handleClose} dialogClassName="modal-dialog modal-xl" > */}
             <Modal show={props.show} onHide={props.handleClose} >
                 <Modal.Header closeButton>
                     Add New Microgreen

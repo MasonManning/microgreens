@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
+import './MicrogreenItem.css'
 
 MicrogreenItem.propTypes = {
 
@@ -23,18 +24,7 @@ function MicrogreenItem(props) {
         })
             .then(data => data.status === 200 ? props.deleteMicro(id) : '')
     }
-    // const handleDelete = () => {
-    //     fetch('http://localhost:5001/api/microgreens', {
-    //         method: "delete",
-    //         headers: {
-    //             "Accept": "Application/json",
-    //             "Content-Type": "Applicaiton/json"
-    //         },
-    //         body: JSON.stringify({
-    //             id: props._id
-    //         })
-    //     })
-    // }
+
     return (
         <div>
 
@@ -77,12 +67,13 @@ function MicrogreenItem(props) {
                                 <td>
                                     {x.stage}
                                 </td>
-                                <td>
+                                <td >
                                     {x.notes}
                                 </td>
                                 <td>
-                                    {/* <Button onClick={handleDelete("This is a string")}>Delete</Button> */}
-                                    <Button onClick={() => {handleDelete(x._id)}}>Delete</Button>
+                                    <Button className='btnStyle' variant='danger' onClick={() => {handleDelete(x._id)}}>Delete</Button>
+                                    <br/>
+                                    <Button className='btnStyle'>Edit</Button>
                                 </td>
                             </tr>
                         )
