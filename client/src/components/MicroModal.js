@@ -18,6 +18,7 @@ function MicroModal(props) {
     const handleSubmit = (event) => {
         event.preventDefault()
         const newMicro = {
+            
                 seed: seed,
                 seedQty: seedQty,
                 soilType: soilType,
