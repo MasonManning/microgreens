@@ -24,7 +24,10 @@ module.exports = function (app) {
                 seedQty: req.body.seedQty,
                 soilType: req.body.soilType,
                 stage: req.body.stage,
-                notes: req.body.notes
+                notes: req.body.notes,
+                number: req.body.number,
+                seedQty: req.body.seedQty,
+                date: req.body.date
             }, (err, microgreen) => {
                 if (err) throw err;
                 res.send("success")
@@ -35,7 +38,10 @@ module.exports = function (app) {
                 seedQty: req.body.seedQty,
                 soilType: req.body.soilType,
                 stage: req.body.stage,
-                notes: req.body.notes
+                notes: req.body.notes,
+                number: req.body.number,
+                seedQty: req.body.seedQty,
+                date: req.body.date
             })
             newMicrogreen.save((err) => {
                 if (err) throw err;
