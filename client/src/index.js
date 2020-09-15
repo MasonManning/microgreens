@@ -5,8 +5,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {createStore} from 'redux'
 import microgreenReducer from './reducers/microgreens'
+import {addMicrogreen} from './actions/index'
 
 const store = createStore(microgreenReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+store.dispatch(addMicrogreen())
 
 ReactDOM.render(
   <React.StrictMode>
